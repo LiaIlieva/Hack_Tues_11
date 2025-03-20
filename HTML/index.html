@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan - Smarter Food Choices</title>
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                NutriScan
+            </div>
+            <div>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#contact">Contact</a>
+                <a href="login.html" style="color: #2ECC71; font-weight: bold;">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1 style="font-size: 3.5rem; margin-bottom: 20px; animation: fadeIn 1s;">Scan. Know. Eat Better.</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 40px; animation: fadeIn 1s 0.2s;">Instant food insights and personalized nutrition guidance</p>
+        <a href="barcodescanner.html">
+            <button class="scan-btn" onclick="window.location.href='#scan'">
+                <i class="fas fa-camera"></i> Scan Product Now
+            </button>
+        </a>
+    </div>
+
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 50px 20px;">
+        <section id="features">
+            <h2 style="text-align: center; margin-bottom: 50px; color: #333;">Key Features</h2>
+            <div class="features" style="display: flex; flex-wrap: wrap; justify-content: center;">
+                <div class="feature-card" style="flex: 1; min-width: 300px;">
+                    <h3><i class="fas fa-barcode" style="color: #2ECC71;"></i> Instant Scanning</h3>
+                    <p>Get immediate nutritional information by scanning product barcodes</p>
+                </div>
+                <div class="feature-card" style="flex: 1; min-width: 300px;">
+                    <h3><i class="fas fa-user" style="color: #2ECC71;"></i> Personalized Insights</h3>
+                    <p>Receive tailored recommendations based on your dietary needs</p>
+                </div>
+                <div class="feature-card" style="flex: 1; min-width: 300px;">
+                    <h3><i class="fas fa-utensils" style="color: #2ECC71;"></i> Meal Suggestions</h3>
+                    <p>Discover healthy recipes using scanned products</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" style="text-align: center; margin: 100px 0;">
+            <h2 style="color: #333;">Start Your Health Journey Today</h2>
+            <p style="margin: 30px 0;">Unlock personalized features by creating your free account</p>
+            <a href="register.html">
+                <button class="scan-btn" style="background: #2ECC71; color: white;">
+                    Sign Up Now
+                </button>
+            </a>
+        </section>
+
+        <div class="feature-card" style="flex: 1; min-width: 300px;">
+            <center>
+                <h2><i class="fas fa-calculator" style="color: #2ECC71;"></i> Calorie Calculator</h2>
+                <h4>Calculate your daily calorie needs and nutritional requirements</h4>
+                <a href="calorie_calculator.html">
+                    <button class="scan-btn" style="margin-top: 15px; padding: 10px 20px;">
+                        Open Calculator
+                    </button>
+                </a>
+            </center>
+        </div>        
+
+        <!-- About Us Section -->
+        <section class="about-section" id="about">
+            <div class="container" style="display: flex; align-items: center; gap: 50px;">
+                <div class="about-content">
+                    <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 30px;">About NutriScan</h2>
+                    <p style="line-height: 1.6; color: #666; margin-bottom: 20px;">
+                        Founded in 2025, NutriScan empowers individuals to make informed dietary choices. 
+                        Our AI-powered platform analyzes over 1 million food products to give you 
+                        personalized nutrition advice instantly.
+                    </p>
+                    <div style="display: flex; gap: 30px; margin-top: 40px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; color: #2ECC71; margin-bottom: 10px;">1M+</div>
+                            <div>Products Analyzed</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; color: #2ECC71; margin-bottom: 10px;">500K+</div>
+                            <div>Happy Users</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <center><img src="../images/orange.png" alt="NutriScan logo" style="height: 400px; width: 400px;"></center>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h2 style="font-size: 2rem; color: #333; margin-bottom: 30px;">Contact Us</h2>
+                    <form>
+                        <input type="text" class="form-input" placeholder="Your Name">
+                        <input type="email" class="form-input" placeholder="Your Email">
+                        <textarea class="form-input" rows="5" placeholder="Your Message"></textarea>
+                        <button class="scan-btn" type="submit" style="background: #2ECC71; color: white;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 style="color: #333; margin-bottom: 30px;"><i class="fas fa-info-circle"></i> Get in Touch</h3>
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #2ECC71; margin-bottom: 10px;"><i class="fas fa-envelope"></i> Email</h4>
+                        <p>nutriscan@gmail.com</p>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #2ECC71; margin-bottom: 10px;"><i class="fas fa-phone"></i> Phone</h4>
+                        <p>+359 88 956 8998</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #2ECC71; margin-bottom: 15px;"><i class="fas fa-share-alt"></i> Social Media</h4>
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#" style="color: #333; font-size: 24px;"><i class="fab fa-facebook"></i></a>
+                            <a href="#" style="color: #333; font-size: 24px;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="color: #333; font-size: 24px;"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!-- Enhanced Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <i class="fas fa-barcode"></i>
+                    NutriScan
+                </div>
+                <p>Empowering healthier choices through technology</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#about">About Us</a>
+                    <a href="#features">Features</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <input type="email" placeholder="Enter your email" 
+                    style="padding: 10px; border-radius: 5px; border: none; margin-bottom: 15px;">
+                    <button class="scan-btn" style="padding: 10px 20px;">Subscribe</button>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; color: #ccc;">
+                © 2025 NutriScan. All rights reserved.
+            </p>
+        </div>
+     </footer>
+</body>
+</html>

@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="icon" type="image/x-icon" href="../Images/logo.png">
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
     <link type="text/css" rel="stylesheet" href="../CSS/login_register.css">
     <script type="text/javascript" src="../JS/common.js" defer></script>
-</head>
-<body>
 </head>
 <body>
     <header>
@@ -18,7 +16,6 @@
     </header>
 
     <div class="login-box">
- 
         <form id="loginForm" name="loginForm" action="/login" method="post">
           <div class="user-box">
             <input type="email" name="email" required="">
@@ -32,24 +29,23 @@
             <center><font color="red">Wrong email or password</font></center>
           </div>
           <center>
-          <a href="#" onclick="submitLoginForm();return false;">
-                 LOGIN
-             <span></span>
-          </a></center>
+            <a href="#" onclick="submitLoginForm();return false;">
+                LOGIN
+                <span></span>
+            </a>
+          </center>
           <center>
-          <a href="../HTML/register.html">
-            <small>Don't have an account?</small>
-        <span></span>
-         </a></center>
+            <a href="/register">
+                <small>Don't have an account?</small>
+                <span></span>
+            </a>
+          </center>
         </form>
-      </div>
+    </div>
 
     <footer>
         <p>&copy; 2025 NutriScan. All rights reserved.</p>
-        
         <p>Contact us at: nutriscan@gmail.com</p>
     </footer>
-
-    
 </body>
 </html>

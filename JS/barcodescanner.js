@@ -1,5 +1,6 @@
 const resultElement = document.getElementById("result");
 const scannerContainer = document.getElementById("scanner-container");
+const rescanButton = document.getElementById("rescan-button");
 
 function initializeScanner() {
     Quagga.init({
@@ -28,6 +29,15 @@ function initializeScanner() {
     });
 }
 
+function restartScanner() {
+    resultElement.innerHTML = "";
+    scannerContainer.style.display = "block"; 
+    rescanButton.style.display = "none";
+
+    Quagga.stop();
+    initializeScanner();
+}
+
 initializeScanner();
 
 Quagga.onDetected(async function (result) {
@@ -36,6 +46,9 @@ Quagga.onDetected(async function (result) {
         console.log("Barcode detected:", barcode);
 
         Quagga.stop();
+
+        scannerContainer.style.display = "none";
+        rescanButton.style.display = "block";
 
         try {
             const openFoodFactsResponse = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
@@ -46,7 +59,7 @@ Quagga.onDetected(async function (result) {
 
                     let productHTML = `
                         <strong>${product.product_name || 'No name available'}</strong><br>
-                        <img src="${product.image_url || ''}" alt="${product.product_name || 'No image available'}" style="max-width: 200px; margin: 10px 0;"><br>
+                        <center><img src="${product.image_url || ''}" alt="${product.product_name || 'No image available'}" style="max-width: 200px; margin: 10px 0;"><br></center>
                         <table>
                             <tr>
                                 <th>Calories</th>
@@ -74,3 +87,5 @@ Quagga.onDetected(async function (result) {
         resultElement.innerText = "The product was not found in the Open Food Facts database.";
     }
 });
+
+rescanButton.addEventListener("click", restartScanner);
