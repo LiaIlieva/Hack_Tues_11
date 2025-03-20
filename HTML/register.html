@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="../Images/logo.png">
+    <link type="text/css" rel="stylesheet" href="../CSS/login_register.css">
+    <script type="text/javascript" src="../JS/common.js" defer></script>
+</head>
+<body>
+</head>
+<body>
+    <header>
+        <div id="top">
+            <h1 id="title">PlanetPals</h1>
+        </div>
+    </header>
+    
+    <div class="login-box">
+ 
+        <form id="registerForm" name="registerForm" action="/register" method="post">
+          <div class="user-box">
+            <input type="text" name="userName" required="">
+            <label>Username</label>
+          </div> 
+         <div class="user-box">
+            <input type="email" name="email" required="">
+            <label>Email</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+          </div>
+          <center>
+          <a href="#" onclick="submitRegisterForm();return false;">
+                 REGISTER
+             <span></span>
+          </a></center>
+          <center>
+          <a href="../HTML/login.html">
+            <small>Already have an account?</small>
+        <span></span>
+         </a></center>
+        </form>
+      </div>
+
+    <footer>
+        <p>&copy; 2024 PlanetPals. All rights reserved.</p>
+        
+        <p>Contact us at: planetpals@gmail.com</p>
+    </footer>
+
+    
+</body>
+</html>
