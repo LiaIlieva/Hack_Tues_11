@@ -2,7 +2,7 @@ const resultElement = document.getElementById("result");
 const scannerContainer = document.getElementById("scanner-container");
 const similarButton = document.getElementById("similar-button");
 const rescanButton = document.getElementById("rescan-button");
-const analizeButton = document.getElementById("analize-button");
+const analyzeButton = document.getElementById("analyze-button");
 
 function initializeScanner() {
     Quagga.init({
@@ -36,7 +36,7 @@ function restartScanner() {
     scannerContainer.style.display = "block";
     rescanButton.style.display = "none";
     similarButton.style.display = "none";
-    analizeButton.style.display = "none";
+    analyzeButton.style.display = "none";
 
     Quagga.stop();
     initializeScanner();
@@ -54,7 +54,7 @@ Quagga.onDetected(async function (result) {
         scannerContainer.style.display = "none";
         rescanButton.style.display = "block";
         similarButton.style.display = "block";
-        analizeButton.style.display = "block";
+        analyzeButton.style.display = "block";
 
         try {
             const openFoodFactsResponse = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
@@ -141,7 +141,7 @@ function displaySimilarFoods(similarFoods) {
     resultElement.innerHTML += similarFoodsHTML;
 }
 
-analizeButton.addEventListener("click", function() {
+analyzeButton.addEventListener("click", function() {
     // Make a GET request to the /analyze-food route
     fetch(`/analyze-food`, {
         method: 'GET',
