@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, session
 from flask_session import Session
+from models import db, User, Product  # Ensure Product is imported
 import json
 import os
 import secrets
@@ -23,6 +24,11 @@ def load_users():
             except json.JSONDecodeError:
                 return {}
     return {}
+
+def find_current_user() -> User:
+    email = session["email"]
+    user = db.session.query(User).filter_by(email=email).first()  # Fetch user from DB  
+    return user
 
 def is_logged():
     return "email" in session and session["email"] is not None
@@ -48,8 +54,9 @@ def login():
     email = request.form['email']
     password = request.form['password']
     users = load_users()
+    user = users[email]
 
-    if email in users and users[email]['password'] == password:
+    if user['password'] == password:
         flash("Login successful!", "success")
         session["email"] = email
         return redirect("/HTML/enterdetails.html")
@@ -72,6 +79,16 @@ def register():
         else:
             users[email] = {'username': username, 'password': password}
             save_users(users)
+            
+            # Create a new user
+            new_user = User(
+                username=username,
+                email=email
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
+            
             flash("Registration successful! Please log in.", "success")
             return redirect(url_for('index'))
 
@@ -96,7 +113,6 @@ from flask import Flask, request, jsonify, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
-from models import db, User, Product  # Ensure Product is imported
 from flask_session import Session
 import secrets
 from werkzeug.security import check_password_hash
@@ -173,7 +189,7 @@ def get_product_info():
         if not is_logged():
             return jsonify({"error": "User not logged in"}), 401
 
-        user = User.query.get(session["user_id"])  # Fetch user from DB
+        user = find_current_user()  # Fetch user from DB
         if not user:
             return jsonify({"error": "User not found"}), 404
 
@@ -213,7 +229,7 @@ def calorie_diet():
     if not is_logged():
         return jsonify({"error": "User not logged in"}), 401
 
-    user = User.query.get(session["user_id"])  # Fetch user from DB
+    user = find_current_user()  # Fetch user from DB
     if not user:
         return jsonify({"error": "User not found"}), 404
 
@@ -237,7 +253,7 @@ def product_diet():
     if not is_logged():
         return jsonify({"error": "User not logged in"}), 401
 
-    user = User.query.get(session["user_id"])  # Fetch the user from DB
+    user = find_current_user()  # Fetch the user from DB
     if not user:
         return jsonify({"error": "User not found"}), 404
 
@@ -274,7 +290,7 @@ def analyze_food_route():
     if not is_logged():
         return jsonify({"error": "User not logged in"}), 401
 
-    user = User.query.get(session["user_id"])  # Fetch user from DB
+    user = find_current_user()  # Fetch user from DB
     if not user:
         return jsonify({"error": "User not found"}), 404
 
@@ -296,7 +312,7 @@ def get_similar_food_route():
         if not is_logged():
             return jsonify({"error": "User not logged in"}), 401
 
-        user = User.query.get(session["user_id"])  # Fetch user from DB
+        user = find_current_user()  # Fetch user from DB       
         if not user:
             return jsonify({"error": "User not found"}), 404
 
@@ -318,8 +334,11 @@ def get_similar_food_route():
         })
 
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    ssl_context = ("cert.pem", "key.pem")
+    # app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=8443, debug=False, ssl_context=ssl_context)
