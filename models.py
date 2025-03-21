@@ -9,7 +9,7 @@ class User(db.Model):
     weight = db.Column(db.Float, nullable=True)
     height = db.Column(db.Float, nullable=True)
     age = db.Column(db.Integer, nullable=True)
-    goal = db.Column(db.String(50), nullable=True)
+    goal = db.Column(db.String(50), nullable=True, default="Not Specified")
 
     calories = db.Column(db.Float)
     carbs_grams = db.Column(db.Float)

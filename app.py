@@ -83,7 +83,11 @@ def register():
             # Create a new user
             new_user = User(
                 username=username,
-                email=email
+                email=email,
+                weight=None,
+                height=None,
+                age=None,
+                goal=None
             )
 
             db.session.add(new_user)
@@ -143,6 +147,39 @@ LABEL_MAP = {0: "fat_loss", 1: "muscle_gain", 2: "maintain_weight"}
 # Create database if not exists
 with app.app_context():
     db.create_all()
+
+@app.route("/user-details", methods=["POST"])
+def enter_user_details():
+    try:
+        user_details = request.form
+        required_fields = ["weight", "height", "goal"]
+
+        user = find_current_user()
+        if not user:
+            flash("User not found", "error")
+            return
+        
+        # Check if all required fields are present
+        if any(field not in user_details for field in required_fields):
+            flash("Missing required user information.", "error")
+            return
+
+        # Classify user's goal
+        goal = get_goal(user_details["goal"])
+        if not goal:  # If the goal is unrelated or confidence is too low
+            flash("Unable to classify goal. Please provide a valid fitness goal.", "error")
+            return
+
+        user.weight = float(user_details["weight"])
+        user.height = float(user_details["height"])
+        user.goal = goal
+
+        db.session.commit()
+        return redirect(url_for('index'))
+
+    except Exception as e:
+        flash(f"Error processing user info: {str(e)}", "error")
+        return
 
 @app.route("/user-info", methods=["POST"])
 def user_info():

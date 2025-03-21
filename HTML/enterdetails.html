@@ -30,7 +30,7 @@
     </div>
 
     <div class="container" style="max-width: 600px; margin: 0 auto; padding: 50px 20px; background: white; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <form id="detailsForm" onsubmit="saveDetails(event)">
+        <form id="detailsForm" action="/user-details" method="post">
             <div class="user-box" style="margin-bottom: 20px;">
                 <label for="weight" style="display: block; font-size: 1.2rem; color: #333; margin-bottom: 10px;">Weight (kg):</label>
                 <input type="number" id="weight" name="weight" required="" placeholder="Enter your weight" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
