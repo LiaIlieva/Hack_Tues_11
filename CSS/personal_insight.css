@@ -1,0 +1,43 @@
+.insights-main {
+    padding: 4rem 0;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.insights-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.insight-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#2ECC71 75%, #eee 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+}
+
+.progress-inner {
+    background: white;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}

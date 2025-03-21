@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan - Meal Suggestions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="../CSS/meals.css">
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
+</head>
+<body>
+    <nav>
+        <div class="container" id="start" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                NutriScan
+            </div>
+            <div class="navibar">
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#contact">Contact</a>
+                <a href="/logout" style="color: #2ECC71; font-weight: bold;">Log out</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="meals-main">
+        <div class="container">
+            <h1>Recommended Meals</h1>
+            
+            <div class="meal-grid">
+                <!-- Meal Card 1 -->
+                <div class="meal-card">
+                    <div class="meal-image" style="background-image: url('../images/meal1.jpg');">
+                        <span class="meal-time"><i class="fas fa-clock"></i> 25 mins</span>
+                    </div>
+                    <div class="meal-content">
+                        <h3>Mediterranean Quinoa Bowl</h3>
+                        <div class="meal-meta">
+                            <span><i class="fas fa-fire"></i> 450 kcal</span>
+                            <span><i class="fas fa-check-circle"></i> 92% match</span>
+                        </div>
+                        <p class="meal-ingredients">Quinoa, cherry tomatoes, spinach, feta, olive oil</p>
+                        <button class="scan-btn">View Recipe</button>
+                    </div>
+                </div>
+
+                <!-- Meal Card 2 -->
+                <div class="meal-card">
+                    <div class="meal-image" style="background-image: url('../images/meal2.jpg');">
+                        <span class="meal-time"><i class="fas fa-clock"></i> 35 mins</span>
+                    </div>
+                    <div class="meal-content">
+                        <h3>Grilled Chicken Wrap</h3>
+                        <div class="meal-meta">
+                            <span><i class="fas fa-fire"></i> 380 kcal</span>
+                            <span><i class="fas fa-check-circle"></i> 88% match</span>
+                        </div>
+                        <p class="meal-ingredients">Whole wheat, grilled chicken, lettuce, yogurt sauce</p>
+                        <button class="scan-btn">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <a href="#start" style="text-decoration: none; color: #2ECC71;">
+                        <i class="fas fa-barcode"></i>
+                        NutriScan
+                    </a>
+                </div>
+                <p>Empowering healthier choices through technology</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#contact">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <input type="email" placeholder="Enter your email" 
+                    style="padding: 10px; border-radius: 5px; border: none; margin-bottom: 15px;">
+                    <button class="scan-btn" style="padding: 10px 20px;">Subscribe</button>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; color: #ccc;">
+                © 2025 NutriScan. All rights reserved.
+            </p>
+        </div>
+     </footer>
+</body>
+</html>

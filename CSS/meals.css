@@ -1,0 +1,43 @@
+.meals-main {
+    padding: 4rem 0;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.meal-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.meal-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
+}
+
+.meal-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.meal-time {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
