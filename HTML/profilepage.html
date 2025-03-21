@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - NutriScan</title>
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../JS/profile.js" defer></script>
+</head>
+<body onload="loadProfileDetails()">
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                NutriScan
+            </div>
+            <div>
+                <a href="index.html">Home</a>
+                <a href="profilepage.html" style="color: #2ECC71; font-weight: bold;">Profile</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero" style="padding: 50px 20px; text-align: center;">
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Welcome, <span id="user-name">John Doe</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">Here is your profile information</p>
+    </div>
+
+    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 50px 20px; background: white; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="font-size: 2rem; color: #333;">Name: <span id="user-name-display">John Doe</span></h2>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <div style="flex: 1; text-align: center;">
+                <h3 style="color: #2ECC71;">Weight</h3>
+                <p style="font-size: 1.2rem; color: #333;" id="user-weight">Loading...</p>
+            </div>
+            <div style="flex: 1; text-align: center;">
+                <h3 style="color: #2ECC71;">Height</h3>
+                <p style="font-size: 1.2rem; color: #333;" id="user-height">Loading...</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="enterdetails.html">
+                <button class="scan-btn" style="background: #2ECC71; color: white; padding: 10px 20px;">Edit Profile</button>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <i class="fas fa-barcode"></i>
+                    NutriScan
+                </div>
+                <p>Empowering healthier choices through technology</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#contact">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <input type="email" placeholder="Enter your email" 
+                    style="padding: 10px; border-radius: 5px; border: none; margin-bottom: 15px;">
+                <button class="scan-btn" style="padding: 10px 20px;">Subscribe</button>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; color: #ccc;">
+            © 2025 NutriScan. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>

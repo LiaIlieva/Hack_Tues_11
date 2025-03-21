@@ -1,16 +1,15 @@
-/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    min-height: 100vh;
 }
 
-/* Navigation */
+
 .main-nav {
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -69,7 +68,7 @@ body {
     margin-left: 2rem !important;
 }
 
-/* Hero Section */
+
 .scanner-hero {
     background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
     padding: 4rem 0;
@@ -95,24 +94,23 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Scanner Container */
+
 #scanner-container {
-    width: 100%;
-    max-width: 600px;
-    height: 400px;
+    width: 640px; 
+    height: 480px; 
     margin: 2rem auto;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     background: #000;
-    transition: transform 0.3s ease;
+    position: relative;
+    border: 2px solid #2ECC71;
 }
 
 #scanner-container:hover {
     transform: translateY(-5px);
 }
 
-/* Results Section */
 #result {
     margin-top: 20px;
     padding: 20px;
@@ -155,24 +153,28 @@ body {
     background-color: #f8fff6;
 }
 
-/* Rescan Button */
+
 #rescan-button {
     display: none;
     margin: 20px auto;
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #4caf50;
-    color: white;
+    background-color: white;
+    color: #4caf50;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
 #rescan-button:hover {
-    background-color: #45a049;
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); 
+    background-color: #f0f0f0; 
 }
 
-/* Footer */
+
 .main-footer {
     background: #2a2a2a;
     color: white;
@@ -225,7 +227,7 @@ body {
     border-top: 1px solid #444;
 }
 
-/* Animations */
+
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
@@ -254,7 +256,7 @@ body {
     }
 }
 
-/* Modern Gradient Background */
+
 .hero {
     background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
     color: white;
@@ -262,7 +264,7 @@ body {
     text-align: center;
 }
 
-/* Scan Button Animation */
+
 .scan-btn {
     background: white;
     color: #2ECC71;
@@ -279,7 +281,6 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Feature Cards Animation */
 .feature-card {
     background: white;
     border-radius: 15px;
@@ -292,7 +293,7 @@ body {
     transform: translateY(-10px);
 }
 
-/* Modern Navigation */
+
 nav {
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -325,7 +326,7 @@ nav a:hover:after {
     }
 }
 
-/* About Section */
+
 .about-section {
     display: flex;
     align-items: center;
@@ -344,7 +345,7 @@ nav a:hover:after {
     animation: fadeIn 1s;
 }
 
-/* Contact Section */
+
 .contact-section {
     padding: 80px 20px;
     background: white;
@@ -377,7 +378,7 @@ nav a:hover:after {
     box-shadow: 0 0 8px rgba(46, 204, 113, 0.2);
 }
 
-/* FAQ Section */
+
 .faq-section {
     padding: 80px 20px;
     background: #f8f9fa;
@@ -394,13 +395,13 @@ nav a:hover:after {
     transform: translateX(10px);
 }
 
-/* Enhanced Footer */
+
 footer {
     background: #2a2a2a;
     color: white;
     padding: 60px 20px;
-    width: 100%; /* Ensure the footer stretches to the full width of the site */
-    box-sizing: border-box; /* Include padding in the width calculation */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .footer-content {
@@ -429,7 +430,7 @@ footer {
     color: #2ECC71;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -445,7 +446,6 @@ footer {
     }
 }
 
-/* Main Content */
 main {
-    flex: 1; /* Pushes the footer to the bottom when content is short */
+    flex: 1;
 }

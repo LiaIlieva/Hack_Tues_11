@@ -34,7 +34,7 @@
     --text-color--muted: #71737f;
     --line-color: #ededef;
   }
-
+  
   @media (prefers-color-scheme: dark) {
     :root {
       --primary-color: #657bdb;
@@ -44,13 +44,13 @@
       --line-color: #6c6f79;
     }
   }
-
+  
   html {
     font-size: 100%;
     background-color: var(--background-color);
     color: var(--text-color);
   }
-
+  
   body {
     font-family: "Geomanist", sans-serif;
     font-size: var(--body-font-size);
@@ -58,27 +58,27 @@
     padding: 0.5em 0.5em 2em 0.5em;
     margin: 0;
   }
-
+  
   .wrapper {
     max-width: var(--content-width);
     margin: calc(var(--line-height) * 0.5em) auto 0 auto;
   }
-
+  
   .results {
     margin-top: 0.5em;
     text-align: center;
   }
-
+  
   .results > div {
     margin-bottom: 0.5em;
   }
-
+  
   @media (min-width: 440px) {
     :root {
       --body-font-size: 18px;
       --line-height: 1.5;
     }
-
+  
     .results {
       margin: 2em 1em 0 2em;
       display: flex;
@@ -89,37 +89,37 @@
       margin-bottom: 0;
     }
   }
-
+  
   .choose-gender {
     display: flex;
     align-items: stretch;
     margin-bottom: 2em;
   }
-
+  
   .segmented-control {
     flex: 1;
     text-align: center;
     line-height: 2em;
     border: 1px solid var(--line-color);
   }
-
+  
   .segmented-control:first-child {
     border-radius: 0.5em 0 0 0.5em;
   }
-
+  
   .segmented-control:last-child {
     border-radius: 0 0.5em 0.5em 0;
   }
-
+  
   .results {
     color: var(--text-color--muted);
   }
-
+  
   .results span {
     font-weight: 500;
     color: var(--text-color);
   }
-
+  
   /* The crazy stuff that needs to be here for the custom input styling */
   input[type="range"] {
     -webkit-appearance: none;
@@ -127,23 +127,23 @@
     width: 100%;
     transition: all 0.265ms ease-out;
   }
-
+  
   input[type="range"]:not(:last-of-type) {
     margin-top: 0;
     margin-bottom: 2.5em;
   }
-
+  
   input[type="range"]:focus {
     outline: none;
   }
-
+  
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     height: 6px;
     cursor: pointer;
     background: var(--line-color);
   }
-
+  
   input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 0 8px 1px var(--secondary-color),
       0 0 16px 4px var(--background-color);
@@ -159,12 +159,12 @@
   input[type="range"]:focus::-webkit-slider-runnable-track {
     background: var(--secondary-color);
   }
-
+  
   input[type="radio"] {
     -webkit-appearance: none;
     display: none;
   }
-
+  
   .segmented-control input[type="radio"] + label {
     border: 1px solid rgba(0, 0, 0, 0);
     width: 100%;
@@ -173,7 +173,7 @@
     cursor: pointer;
     color: var(--text-color--muted);
   }
-
+  
   .segmented-control input[type="radio"]:checked + label {
     background-color: var(--line-color);
     width: 100%;
@@ -181,26 +181,26 @@
     display: block;
     color: var(--text-color);
   }
-
+  
   .segmented-control input[type="radio"]:focus + label {
     border: 1px solid var(--secondary-color);
   }
-
+  
   .segmented-control:first-child input[type="radio"]:checked + label {
     border-radius: 0.5em 0 0 0.5em;
   }
-
+  
   .segmented-control:last-child input[type="radio"]:checked + label {
     border-radius: 0 0.5em 0.5em 0;
   }
-
+  
   input[type="range"]::-moz-range-track {
     width: 100%;
     height: 100%;
     cursor: pointer;
     background: var(--line-color);
   }
-
+  
   input[type="range"]::-moz-range-thumb {
     box-shadow: 0 0 8px 1px var(--secondary-color),
       0 0 16px 4px var(--background-color);

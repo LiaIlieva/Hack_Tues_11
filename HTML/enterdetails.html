@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Details - NutriScan</title>
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../JS/profile.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo">
+                <i class="fas fa-barcode"></i>
+                NutriScan
+            </div>
+            <div>
+                <a href="index.html">Home</a>
+                <a href="profilepage.html">Profile</a>
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero" style="padding: 50px 20px; text-align: center;">
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Welcome to NutriScan</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">Please enter your details to complete your profile</p>
+    </div>
+
+    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 50px 20px; background: white; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <form id="detailsForm" onsubmit="saveDetails(event)">
+            <div class="user-box" style="margin-bottom: 20px;">
+                <label for="weight" style="display: block; font-size: 1.2rem; color: #333; margin-bottom: 10px;">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required="" placeholder="Enter your weight" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div class="user-box" style="margin-bottom: 20px;">
+                <label for="height" style="display: block; font-size: 1.2rem; color: #333; margin-bottom: 10px;">Height (cm):</label>
+                <input type="number" id="height" name="height" required="" placeholder="Enter your height" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="submit" class="scan-btn" style="background: #2ECC71; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <i class="fas fa-barcode"></i>
+                    NutriScan
+                </div>
+                <p>Empowering healthier choices through technology</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#contact">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <input type="email" placeholder="Enter your email" 
+                    style="padding: 10px; border-radius: 5px; border: none; margin-bottom: 15px;">
+                <button class="scan-btn" style="padding: 10px 20px;">Subscribe</button>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; color: #ccc;">
+            © 2025 NutriScan. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>

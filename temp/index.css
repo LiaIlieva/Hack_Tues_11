@@ -107,7 +107,7 @@ nav a:hover:after {
 }
 .about-image {
     flex: 1;
-    background: #f8f9fa;
+    background: #ddd;
     height: 400px;
     border-radius: 20px;
     animation: fadeIn 1s;

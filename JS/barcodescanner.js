@@ -62,7 +62,7 @@ Quagga.onDetected(async function (result) {
                         <center><img src="${product.image_url || ''}" alt="${product.product_name || 'No image available'}" style="max-width: 200px; margin: 10px 0;"><br></center>
                         <table>
                             <tr>
-                                <th>Calories</th>
+                                <th>Calories/100g</th>
                                 <td>${product.nutriments['energy-kcal'] || 'No information available'} kcal</td>
                             </tr>
                             <tr>
