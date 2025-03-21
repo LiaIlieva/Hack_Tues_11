@@ -1,0 +1,119 @@
+.meal-planner {
+    background: linear-gradient(135deg, #f8fff6 0%, #f0f9eb 100%);
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.ai-header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+    color: white;
+    margin-bottom: 2rem;
+    border-radius: 0 0 30px 30px;
+}
+
+.meal-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.meal-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(46, 204, 113, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(46, 204, 113, 0.15);
+}
+
+.meal-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.meal-time {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #2ECC71;
+}
+
+.meal-content {
+    padding: 1.5rem;
+    position: relative;
+}
+
+.ai-badge {
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    background: #2ECC71;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meal-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.meal-tag {
+    background: #e8f5e9;
+    color: #2ECC71;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.nutrition-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    background: #f8fff6;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+}
+
+.nutrition-item {
+    text-align: center;
+}
+
+.nutrition-value {
+    font-weight: 600;
+    color: #2ECC71;
+    font-size: 1.2rem;
+}
+
+.ai-explanation {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid #2ECC71;
+}

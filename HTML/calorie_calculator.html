@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NutriScan - Calorie Calculator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/calorie_calculator.css">
     <link rel="icon" type="image/x-icon" href="../images/orange.png">
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-          <a href="index.html" style="text-decoration: none; color: #2ECC71;">
-            <i class="fas fa-barcode"></i>
-            NutriScan
-          </a>
+    <nav>
+        <div class="container" id="start" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" style="text-decoration: none; color: #2ECC71;">
+                <div class="logo">
+                    <i class="fas fa-barcode"></i>
+                    NutriScan
+                </div>
+            </a>
+            <div class="navibar">
+                <a href="personal.html">Personal insight</a>
+                <a href="meals.html">Meal Suggester</a>
+                <a href="barcodescanner.html">Scan</a>
+                <a href="/logout" style="color: #2ECC71; font-weight: bold;">Log out</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <div id="bmr-calculator" class="wrapper" style="margin-top: 4%;">
         <div class="calculator">
