@@ -156,6 +156,27 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Subscribe Button */
+.subscribe-button {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: white;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+}
+
 /* Footer */
 .main-footer {
     background:  #2a2a2a !important;
@@ -163,6 +184,7 @@ body {
     padding: 3rem 0 1rem;
     margin-top: 4rem;
 }
+
 
 .footer-content {
     max-width: 1200px;
@@ -209,6 +231,8 @@ body {
     border-top: 1px solid #444;
 }
 
+
+
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -249,6 +273,7 @@ body {
     .main-footer {
         background:  #2a2a2a;
     }
+    
 }
 
 * Navigation */
@@ -309,3 +334,5 @@ body {
     font-weight: bold !important;
     margin-left: 2rem !important;
 }
+
+
