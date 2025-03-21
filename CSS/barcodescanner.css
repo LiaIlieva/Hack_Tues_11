@@ -136,7 +136,11 @@ body {
 }
 
 /* Rescan Button */
-#rescan-button {
+.buttons {
+    display: flex;
+}
+
+#rescan-button, #similar-button, #analize-button {
     display: none;
     margin: 20px auto;
     padding: 10px 20px;
@@ -155,6 +159,29 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     background-color: #f0f0f0;
 }
+
+#similar-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+}
+
+#similar-button {
+    left: calc(50% + 20px);
+    background: #f0f0f0;
+}
+
+#analize-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+}
+
+#analize-button {
+    left: calc(50% + 20px);
+    background: #f0f0f0;
+}
+
 
 /* Subscribe Button */
 .subscribe-button {

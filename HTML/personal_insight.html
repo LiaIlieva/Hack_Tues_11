@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan - Personalized Insights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <link rel="icon" type="image/x-icon" href="../images/orange.png">
+    <style>
+        .insights-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .ai-recommendations {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-barcode"></i>
+                NutriScan
+            </a>
+            <div class="nav-links">
+                <a href="insights.html" class="active">Insights</a>
+                <a href="meals.html">Meals</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="insights-container">
+        <!-- Profile Section -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2><i class="fas fa-user-circle"></i> Your Profile</h2>
+                <button class="scan-btn small-btn" onclick="toggleEditForm()">Edit</button>
+            </div>
+            
+            <div class="profile-details">
+                <div class="detail-item">
+                    <span>Weight:</span>
+                    <span id="profile-weight">Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <span>Height:</span>
+                    <span id="profile-height">Loading...</span>
+                </div>
+                <!-- Add more details as needed -->
+            </div>
+
+            <div id="edit-form" style="display: none;">
+                <form id="profileForm" onsubmit="saveProfileDetails(event)">
+                    <input type="number" id="edit-weight" placeholder="Weight (kg)" required>
+                    <input type="number" id="edit-height" placeholder="Height (cm)" required>
+                    <button type="submit" class="scan-btn">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- AI-Generated Insights -->
+        <div class="ai-recommendations">
+            <div class="insight-card">
+                <h3><i class="fas fa-brain"></i> AI Nutrition Analysis</h3>
+                <div id="ai-insights">
+                    <!-- AI-generated content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="insight-card">
+                <h3><i class="fas fa-chart-line"></i> Progress Tracking</h3>
+                <div class="progress-tracker">
+                    <!-- Progress visualization -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Load profile data
+        function loadProfileDetails() {
+            const weight = localStorage.getItem('userWeight') || 'Not set';
+            const height = localStorage.getItem('userHeight') || 'Not set';
+            
+            document.getElementById('profile-weight').textContent = `${weight} kg`;
+            document.getElementById('profile-height').textContent = `${height} cm`;
+        }
+
+        // Toggle edit form
+        function toggleEditForm() {
+            const form = document.getElementById('edit-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Save updated profile
+        function saveProfileDetails(event) {
+            event.preventDefault();
+            const newWeight = document.getElementById('edit-weight').value;
+            const newHeight = document.getElementById('edit-height').value;
+
+            localStorage.setItem('userWeight', newWeight);
+            localStorage.setItem('userHeight', newHeight);
+            
+            loadProfileDetails();
+            toggleEditForm();
+            
+            // Refresh calculator data
+            if(typeof updateCalculator === 'function') {
+                updateCalculator();
+            }
+        }
+
+        // Initial load
+        loadProfileDetails();
+    </script>
+</body>
+</html>

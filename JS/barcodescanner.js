@@ -1,6 +1,8 @@
 const resultElement = document.getElementById("result");
 const scannerContainer = document.getElementById("scanner-container");
+const similarButton = document.getElementById("similar-button");
 const rescanButton = document.getElementById("rescan-button");
+const analizeButton = document.getElementById("analize-button");
 
 function initializeScanner() {
     Quagga.init({
@@ -31,8 +33,10 @@ function initializeScanner() {
 
 function restartScanner() {
     resultElement.innerHTML = "";
-    scannerContainer.style.display = "block"; 
+    scannerContainer.style.display = "block";
     rescanButton.style.display = "none";
+    similarButton.style.display = "none";
+    analizeButton.style.display = "none";
 
     Quagga.stop();
     initializeScanner();
@@ -49,6 +53,8 @@ Quagga.onDetected(async function (result) {
 
         scannerContainer.style.display = "none";
         rescanButton.style.display = "block";
+        similarButton.style.display = "block";
+        analizeButton.style.display = "block";
 
         try {
             const openFoodFactsResponse = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
@@ -89,3 +95,92 @@ Quagga.onDetected(async function (result) {
 });
 
 rescanButton.addEventListener("click", restartScanner);
+
+similarButton.addEventListener("click", function() {
+    // Make a GET request to the /get-similar-food route
+    fetch(`/get-similar-food`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success") {
+            // Display the similar foods
+            displaySimilarFoods(data.similar_foods);
+        } else {
+            console.error("Failed to fetch similar foods:", data.error);
+            alert("Failed to fetch similar foods. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching similar foods:", error);
+        alert("An error occurred while fetching similar foods.");
+    });
+});
+
+// Function to display similar foods
+function displaySimilarFoods(similarFoods) {
+    let similarFoodsHTML = "<h3>Similar Foods:</h3>";
+    similarFoods.forEach(food => {
+        similarFoodsHTML += `
+            <div>
+                <strong>${food.product_name}</strong><br>
+                <em>Ingredients:</em> ${food.ingredients}<br><br>
+            </div>
+        `;
+    });
+
+    // Display the similar foods in the result element or another container
+    resultElement.innerHTML += similarFoodsHTML;
+}
+
+analizeButton.addEventListener("click", function() {
+    // Make a GET request to the /analyze-food route
+    fetch(`/analyze-food`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success") {
+            // Display the evaluation result
+            displayEvaluation(data.evaluation);
+        } else {
+            console.error("Failed to analyze food:", data.error);
+            alert("Failed to analyze food. Please try again.");
+        }
+    })
+    .catch(error => {
+        console.error("Error analyzing food:", error);
+        alert("An error occurred while analyzing the food.");
+    });
+});
+
+// Function to display the evaluation result
+function displayEvaluation(evaluation) {
+    let evaluationHTML = "<h3>Food Evaluation:</h3>";
+    evaluationHTML += `
+        <div>
+            <strong>Product Name:</strong> ${evaluation.product_name}<br>
+            <strong>Nutritional Evaluation:</strong> ${evaluation.nutritional_evaluation}<br>
+            <strong>Ingredient Evaluation:</strong> ${evaluation.ingredient_evaluation}<br>
+        </div>
+    `;
+
+    // Display the evaluation in the result element or another container
+    resultElement.innerHTML += evaluationHTML;
+}
