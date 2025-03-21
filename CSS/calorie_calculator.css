@@ -55,8 +55,7 @@
     font-family: "Geomanist", sans-serif;
     font-size: var(--body-font-size);
     line-height: var(--line-height);
-    padding: 0.5em 0.5em 2em 0.5em;
-    margin: 0;
+    padding: 0em 0.5em 0.2em 0.5em;
   }
 
   .wrapper {
@@ -219,10 +218,7 @@
     padding: 5px;
     background-color: #4CAF50;
     color: white;
-    position: fixed;
-    width: 100vw;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: auto;
+    margin-top: 4%;
     font-size: 0.8em;
   }

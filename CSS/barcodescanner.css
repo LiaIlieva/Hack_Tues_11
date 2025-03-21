@@ -9,8 +9,8 @@ body {
     min-height: 100vh;
 }
 
-
 .main-nav {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
@@ -20,9 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: auto;
 }
 
 .logo {

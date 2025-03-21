@@ -11,6 +11,10 @@
     animation: pulse 2s infinite;
 }
 
+.navibar {
+    font-size: 20px;
+}
+
 /* Animations */
 @keyframes pulse {
     0% { transform: scale(1); }
