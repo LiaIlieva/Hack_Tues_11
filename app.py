@@ -77,7 +77,6 @@ def register():
 
     return redirect('/HTML/register.html')
 
-
 @app.route('/<path:path>')
 def send_file(path):
     if path.endswith("login.html") or path.endswith("register.html"):
@@ -106,9 +105,6 @@ from create_calorie_diet import get_calorie_diet
 from create_products_diet import create_diet_plan
 from analyzing_food_model import analize_food
 from get_similar_foods_model import get_similar_food
-
-# Initialize Flask app
-app = Flask(__name__)
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
