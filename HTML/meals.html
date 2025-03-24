@@ -33,154 +33,62 @@
             <p>Generated based on your profile and dietary goals</p>
         </div>
 
-        <div class="meal-grid">
-            <!-- Breakfast Card -->
-            <div class="meal-card">
-                <div class="meal-image" style="background-image: url('../images/Greek-Yogurt-Breakfast.jpg');">
-                    <span class="meal-time">7:30 AM</span>
-                </div>
-                <div class="meal-content">
-                    <div class="ai-badge">
-                        <i class="fas fa-brain"></i>
-                        AI Suggested
-                    </div>
-                    <h3>Superfood Breakfast Bowl</h3>
-                    <div class="meal-tags">
-                        <span class="meal-tag">High Protein</span>
-                        <span class="meal-tag">Low Carb</span>
-                        <span class="meal-tag">Vegetarian</span>
-                    </div>
-                    <p>Greek yogurt with mixed berries, chia seeds, and almond butter</p>
-                    
-                    <div class="nutrition-facts">
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">320 kcal</div>
-                            <div class="nutrition-label">Calories</div>
-                        </div>
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">24g</div>
-                            <div class="nutrition-label">Protein</div>
-                        </div>
-                    </div>
-                    
-                    <button class="scan-btn small-btn">
-                        <i class="fas fa-utensils"></i> View Recipe
-                    </button>
-                </div>
-            </div>
-
-            <!-- Lunch Card -->
-            <div class="meal-card">
-                <div class="meal-image" style="background-image: url('../images/Mediterranean-quinoa-salad.jpg');">
-                    <span class="meal-time">12:45 PM</span>
-                </div>
-                <div class="meal-content">
-                    <div class="ai-badge">
-                        <i class="fas fa-brain"></i>
-                        AI Suggested
-                    </div>
-                    <h3>Mediterranean Quinoa Salad</h3>
-                    <div class="meal-tags">
-                        <span class="meal-tag">High Fiber</span>
-                        <span class="meal-tag">Vegan</span>
-                        <span class="meal-tag">Low Sodium</span>
-                    </div>
-                    <p>Quinoa with roasted vegetables, olives, and lemon-tahini dressing</p>
-                    
-                    <div class="nutrition-facts">
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">420 kcal</div>
-                            <div class="nutrition-label">Calories</div>
-                        </div>
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">18g</div>
-                            <div class="nutrition-label">Protein</div>
-                        </div>
-                    </div>
-                    
-                    <button class="scan-btn small-btn">
-                        <i class="fas fa-utensils"></i> View Recipe
-                    </button>
-                </div>
-            </div>
-
-            <!-- Optional Snack Card -->
-            <div class="meal-card">
-                <div class="meal-image" style="background-image: url('../images/chocolate.jpg');">
-                    <span class="meal-time">3:30 PM</span>
-                </div>
-                <div class="meal-content">
-                    <div class="ai-badge">
-                        <i class="fas fa-brain"></i>
-                        AI Suggested
-                    </div>
-                    <h3>Energy Boosting Snack</h3>
-                    <div class="meal-tags">
-                        <span class="meal-tag">High Fiber</span>
-                        <span class="meal-tag">Antioxidants</span>
-                        <span class="meal-tag">Vegan</span>
-                    </div>
-                    <p>Dark chocolate covered almonds with fresh berries</p>
-                    
-                    <div class="nutrition-facts">
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">220 kcal</div>
-                            <div class="nutrition-label">Calories</div>
-                        </div>
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">6g</div>
-                            <div class="nutrition-label">Protein</div>
-                        </div>
-                    </div>
-                    
-                    <button class="scan-btn small-btn">
-                        <i class="fas fa-utensils"></i> View Recipe
-                    </button>
-                </div>
-            </div>
-
-            <!-- Dinner Card -->
-            <div class="meal-card">
-                <div class="meal-image" style="background-image: url('../images/Salmon-Bowls.jpg');">
-                    <span class="meal-time">7:00 PM</span>
-                </div>
-                <div class="meal-content">
-                    <div class="ai-badge">
-                        <i class="fas fa-brain"></i>
-                        AI Suggested
-                    </div>
-                    <h3>Grilled Salmon Bowl</h3>
-                    <div class="meal-tags">
-                        <span class="meal-tag">High Protein</span>
-                        <span class="meal-tag">Omega-3</span>
-                        <span class="meal-tag">Low Carb</span>
-                    </div>
-                    <p>Grilled salmon with quinoa, steamed broccoli, and lemon-dill sauce</p>
-                    
-                    <div class="nutrition-facts">
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">450 kcal</div>
-                            <div class="nutrition-label">Calories</div>
-                        </div>
-                        <div class="nutrition-item">
-                            <div class="nutrition-value">35g</div>
-                            <div class="nutrition-label">Protein</div>
-                        </div>
-                    </div>
-                    
-                    <button class="scan-btn small-btn">
-                        <i class="fas fa-utensils"></i> View Recipe
-                    </button>
-                </div>
-            </div>
+        <div id="meal-grid" class="meal-grid">
+            <!-- Meals will be dynamically inserted here -->
         </div>
 
         <div class="ai-explanation">
             <h3><i class="fas fa-comment-dots"></i> AI Nutritionist Notes</h3>
-            <p>This meal plan was crafted based on your current fitness goals, dietary preferences, and recent scan history. 
-               The balanced macronutrient distribution supports your target of maintaining muscle mass while reducing body fat. 
-               I've included omega-rich ingredients to support your heart health goals.</p>
+            <p>This meal plan was crafted based on your current fitness goals, dietary preferences, and recent scan history.</p>
         </div>
     </div>
+
+    <script>
+        async function fetchMealPlan() {
+            try {
+                const response = await fetch("/get-meal-plan");
+                const data = await response.json();
+
+                if (data.status === "success") {
+                    displayMeals(data.diet_plan);
+                } else {
+                    console.error("Error fetching meal plan:", data.error);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        function displayMeals(mealPlan) {
+            const mealGrid = document.getElementById("meal-grid");
+            mealGrid.innerHTML = ""; // Clear existing content
+
+            mealPlan.forEach(meal => {
+                const mealCard = document.createElement("div");
+                mealCard.classList.add("meal-card");
+
+                mealCard.innerHTML = `
+                    <div class="meal-image" style="background-image: url('${meal.image_url || "../images/default-meal.jpg"}');">
+                        <span class="meal-time">Meal Time</span>
+                    </div>
+                    <div class="meal-content">
+                        <div class="ai-badge">
+                            <i class="fas fa-brain"></i> AI Suggested
+                        </div>
+                        <h3>${meal.title}</h3>
+                        <p>${meal.description}</p>
+                        <button class="scan-btn small-btn">
+                            <i class="fas fa-utensils"></i> View Recipe
+                        </button>
+                    </div>
+                `;
+                
+                mealGrid.appendChild(mealCard);
+            });
+        }
+
+        // Fetch and display meals on page load
+        document.addEventListener("DOMContentLoaded", fetchMealPlan);
+    </script>
 </body>
 </html>

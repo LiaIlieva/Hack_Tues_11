@@ -4,6 +4,9 @@ from models import db, User, Product  # Ensure Product is imported
 import json
 import os
 import secrets
+from flask_migrate import Migrate
+
+
 
 template_folder = os.path.abspath('.')
 app = Flask(__name__, template_folder=template_folder)
@@ -11,6 +14,7 @@ app.secret_key = secrets.token_hex(16)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+migrate = Migrate(app, db)  # Initialize Flask-Migrate
 
 USER_DATA_FILE = 'users.json'
 
@@ -59,7 +63,8 @@ def login():
     if user['password'] == password:
         flash("Login successful!", "success")
         session["email"] = email
-        return redirect("/HTML/enterdetails.html")
+        return redirect(url_for('index'))
+        
     else:
         flash("Invalid email or password.", "danger")
         return redirect(url_for('index'))
@@ -93,8 +98,8 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             
-            flash("Registration successful! Please log in.", "success")
-            return redirect(url_for('index'))
+            flash("Registration successful!", "success")
+            return redirect(url_for('enterdetails'))
 
     return redirect('/HTML/register.html')
 
@@ -152,7 +157,7 @@ with app.app_context():
 def enter_user_details():
     try:
         user_details = request.form
-        required_fields = ["weight", "height", "goal"]
+        required_fields = ["weight", "height", "goal", "age"]
 
         user = find_current_user()
         if not user:
@@ -173,6 +178,7 @@ def enter_user_details():
         user.weight = float(user_details["weight"])
         user.height = float(user_details["height"])
         user.goal = goal
+        user.age = float(user_details["age"])
 
         db.session.commit()
         return redirect(url_for('index'))
@@ -220,13 +226,23 @@ def user_info():
         return jsonify({"status": "error", "message": f"Error processing user info: {str(e)}"}), 500
 
 
+from deep_translator import GoogleTranslator
+from flask import request, jsonify
+from models import db, Product  # Adjust this import according to your project structure
+
+def translate_to_english(text):
+    """Translates text to English using Google Translate."""
+    if text:
+        return GoogleTranslator(source="auto", target="en").translate(text)
+    return text  # Return the original text if it's None or empty
+
 @app.route("/product", methods=["POST"])
 def get_product_info():
     try:
         if not is_logged():
             return jsonify({"error": "User not logged in"}), 401
 
-        user = find_current_user()  # Fetch user from DB
+        user = find_current_user()  # Fetch the user from DB
         if not user:
             return jsonify({"error": "User not found"}), 404
 
@@ -235,21 +251,36 @@ def get_product_info():
         if product_data.get("status") != 1:
             return jsonify({"error": "Product not found"}), 404
 
+        # 🚨 Delete ALL previous products linked to this user 🚨
+        print(f'Clearing previous products for user {user.id}')
+        db.session.query(Product).filter_by(user_id=user.id).delete()
+        db.session.commit()
+
+        # Extract new product data
+        product = product_data.get("product")  
+
+        # Translate all relevant product fields to English
         product_info = {
-            "name": product_data["product_name"],
-            "brands": product_data["product"],
-            "ingredients": product_data["ingredients_text"],
-            "nutritional_info": product_data["nutriments"],
-            "barcode": product_data["code"]
+            "name": translate_to_english(product.get("product_name")),
+            "brands": translate_to_english(product.get("brands")),
+            "ingredients": translate_to_english(product.get("ingredients_text")),
+            "nutritional_info": product.get("nutriments"),  # Nutritional info might be a dict, so consider how to handle it
+            "barcode": product.get("code")
         }
 
+        # If nutritional info is a dictionary, you might want to translate individual keys like:
+        if product_info["nutritional_info"]:
+            product_info["nutritional_info"] = {key: translate_to_english(value) if isinstance(value, str) else value
+                                                 for key, value in product_info["nutritional_info"].items()}
+
+        # Create a new Product record
         new_product = Product(
             name=product_info['name'],
             brands=product_info['brands'],
             ingredients=product_info['ingredients'],
             nutritional_info=product_info['nutritional_info'],
             barcode=product_info['barcode'],
-            user_id=user.id  # Associate the product with the logged-in user
+            user_id=user.id  # Associate with the logged-in user
         )
 
         db.session.add(new_product)
@@ -259,6 +290,7 @@ def get_product_info():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 
 @app.route("/get-calorie-diet", methods=["GET"])
@@ -321,6 +353,39 @@ def product_diet():
         "diet_plan": formatted_diet_plan
     })
 
+from create_products_diet_2 import generate_meal_plan
+
+# @app.route("/get-meal-plan", methods=["GET"])
+# def product_diet():
+#     # if not is_logged():
+#     #     return jsonify({"error": "User not logged in"}), 401
+
+#     # user = find_current_user()  # Fetch the user from DB
+#     # if not user:
+#     #     return jsonify({"error": "User not found"}), 404
+
+#     test_user = User(
+#         id=3,
+#         username="test_user",
+#         email="test@example.com",
+#         weight=70.0,  # kg
+#         height=175.0,  # cm
+#         age=25,
+#         goal="muscle_gain",
+#         calories=2500,
+#         protein_grams=180,
+#         carbs_grams=300,
+#         fat_grams=70
+#     )
+   
+#     diet_plan = generate_meal_plan(test_user)
+#     print("Generated Meal Plan:", diet_plan)
+
+#     return jsonify({
+#         "status": "success",
+#         "diet_plan": diet_plan
+#     })
+
 
 @app.route("/analyze-food", methods=['GET'])
 def analyze_food_route():
@@ -332,6 +397,7 @@ def analyze_food_route():
         return jsonify({"error": "User not found"}), 404
 
     product = Product.query.filter_by(user_id=user.id).first()
+    print(product)
 
     if not product:
         return jsonify({"error": "No products found for the logged-in user."}), 404
@@ -364,8 +430,8 @@ def get_similar_food_route():
             "status": "success",
             "similar_foods": [
                 {
-                    "product_name": food.get('product_name', 'N/A'),
-                    "ingredients": food.get('ingredients_text', 'N/A')
+                    "product_name": food.get('product_name', 'N/A'),  # Use .get() for dictionaries
+                    "ingredients": food.get('ingredients_text', 'N/A')  # Use .get() for dictionaries
                 } for food in similar_foods
             ]
         })

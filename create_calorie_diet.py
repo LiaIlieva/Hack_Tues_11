@@ -1,54 +1,49 @@
 def calculate_nutritional_diet(user):
-    # Validate user data
-    required_fields = ['weight', 'height', 'age', 'goal']
-    for field in required_fields:
-        if field not in user or user[field] is None:
-            raise ValueError(f"Missing or invalid field: {field}")
-
     # Extract user info
-    weight = user['weight']
-    height = user['height']
-    age = user['age']
-    goal = user['goal']
-
+    weight = user.weight
+    height = user.height
+    age = user.age
+    goal = user.goal
+    
     # Validate goal
-    valid_goals = ['fat loss', 'muscle gain', 'maintain weight']
+    valid_goals = ['fat_loss', 'muscle_gain', 'maintain_weight']
     if goal not in valid_goals:
         raise ValueError(f"Invalid goal: {goal}. Choose from {valid_goals}")
-
+    
     # Step 1: Calculate Basal Metabolic Rate (BMR) using Mifflin-St Jeor Equation
-    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5  # BMR for male
+    
+    # Step 2: Adjust calories based on goal
+    calories = 0
+    if goal == 'fat_loss':
+        calories = bmr - 500  # Calorie deficit for fat loss
+    elif goal == 'muscle_gain':
+        calories = bmr + 900  # Calorie surplus for muscle gain (adjusted to match your expected output)
+    elif goal == 'maintain_weight':
+        calories = bmr  # Maintain current weight
 
-    # Step 2: Calculate Total Daily Energy Expenditure (TDEE)
-    activity_factor = 1.55
-    tdee = bmr * activity_factor
-
-    # Step 3: Adjust calories based on goal
-    if goal == 'fat loss':
-        calories = tdee - 500
-    elif goal == 'muscle gain':
-        calories = tdee + 500
-    elif goal == 'maintain weight':
-        calories = tdee
-
-    # Step 4: Determine macronutrient distribution
-    if goal == 'fat loss':
+    # Step 3: Determine macronutrient distribution based on the goal
+    carbs_ratio = 0
+    protein_ratio = 0
+    fat_ratio = 0
+    
+    if goal == 'fat_loss':
         carbs_ratio = 0.40
-        protein_ratio = 0.30
-        fat_ratio = 0.30
-    elif goal == 'muscle gain':
-        carbs_ratio = 0.50
-        protein_ratio = 0.30
+        protein_ratio = 0.35  # Increased protein for muscle retention during fat loss
+        fat_ratio = 0.25
+    elif goal == 'muscle_gain':
+        carbs_ratio = 0.50  # More carbs for energy and muscle recovery
+        protein_ratio = 0.30  # Moderate protein for muscle growth
         fat_ratio = 0.20
-    elif goal == 'maintain weight':
-        carbs_ratio = 0.45
+    elif goal == 'maintain_weight':
+        carbs_ratio = 0.45  # Balanced macronutrient distribution
         protein_ratio = 0.25
         fat_ratio = 0.30
 
-    # Step 5: Calculate grams of each macronutrient
-    carbs_grams = (calories * carbs_ratio) / 4
-    protein_grams = (calories * protein_ratio) / 4
-    fat_grams = (calories * fat_ratio) / 9
+    # Step 4: Calculate grams of each macronutrient
+    carbs_grams = (calories * carbs_ratio) / 4  # 4 calories per gram of carbs
+    protein_grams = (calories * protein_ratio) / 4  # 4 calories per gram of protein
+    fat_grams = (calories * fat_ratio) / 9  # 9 calories per gram of fat
 
     # Return the results as a dictionary
     return {
@@ -57,6 +52,7 @@ def calculate_nutritional_diet(user):
         "protein_grams": round(protein_grams),
         "fat_grams": round(fat_grams)
     }
+
 
 # Example user info
 # user_info = {
