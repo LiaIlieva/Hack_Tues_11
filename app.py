@@ -99,7 +99,7 @@ def register():
             db.session.commit()
             
             flash("Registration successful!", "success")
-            return redirect(url_for('enterdetails'))
+            return redirect(url_for('enter_user_details'))
 
     return redirect('/HTML/register.html')
 
@@ -153,39 +153,42 @@ LABEL_MAP = {0: "fat_loss", 1: "muscle_gain", 2: "maintain_weight"}
 with app.app_context():
     db.create_all()
 
-@app.route("/user-details", methods=["POST"])
+@app.route("/user-details", methods=["POST", "GET"])
 def enter_user_details():
-    try:
-        user_details = request.form
-        required_fields = ["weight", "height", "goal", "age"]
+    if request.method == "POST":
+        try:
+            user_details = request.form
+            required_fields = ["weight", "height", "goal", "age"]
 
-        user = find_current_user()
-        if not user:
-            flash("User not found", "error")
+            user = find_current_user()
+            if not user:
+                flash("User not found", "error")
+                return
+
+            # Check if all required fields are present
+            if any(field not in user_details for field in required_fields):
+                flash("Missing required user information.", "error")
+                return
+
+            # Classify user's goal
+            goal = get_goal(user_details["goal"])
+            if not goal:  # If the goal is unrelated or confidence is too low
+                flash("Unable to classify goal. Please provide a valid fitness goal.", "error")
+                return
+
+            user.weight = float(user_details["weight"])
+            user.height = float(user_details["height"])
+            user.goal = goal
+            user.age = float(user_details["age"])
+
+            db.session.commit()
+            return redirect(url_for('index'))
+
+        except Exception as e:
+            flash(f"Error processing user info: {str(e)}", "error")
             return
-        
-        # Check if all required fields are present
-        if any(field not in user_details for field in required_fields):
-            flash("Missing required user information.", "error")
-            return
 
-        # Classify user's goal
-        goal = get_goal(user_details["goal"])
-        if not goal:  # If the goal is unrelated or confidence is too low
-            flash("Unable to classify goal. Please provide a valid fitness goal.", "error")
-            return
-
-        user.weight = float(user_details["weight"])
-        user.height = float(user_details["height"])
-        user.goal = goal
-        user.age = float(user_details["age"])
-
-        db.session.commit()
-        return redirect(url_for('index'))
-
-    except Exception as e:
-        flash(f"Error processing user info: {str(e)}", "error")
-        return
+    return redirect('/HTML/enterdetails.html')
 
 @app.route("/user-info", methods=["POST"])
 def user_info():
@@ -353,7 +356,8 @@ def product_diet():
         "diet_plan": formatted_diet_plan
     })
 
-from create_products_diet_2 import generate_meal_plan
+#from create_products_diet_2 import generate_meal_plan
+from create_products_diet import create_diet_plan
 
 # @app.route("/get-meal-plan", methods=["GET"])
 # def product_diet():
